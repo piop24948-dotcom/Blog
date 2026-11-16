@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Herramientas de comunicación y de socialización</title>
+<meta name="description" content="Blog académico sobre herramientas de comunicación y socialización.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===== VARIABLES Y BASE ===== */
+:root{--bg:#fffdf9;--beige:#f5ede0;--azul:#dbe9f8;--azul2:#a9c8ec;--lila:#e6dcf5;--lila2:#b9a4de;--tinta:#2d3350;--suave:#5b6283;--sombra:0 6px 20px rgba(80,90,140,.12);--r:18px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;font-family:'Nunito Sans',system-ui,sans-serif;background:var(--bg);color:var(--tinta);line-height:1.7;font-size:1.04rem}
+h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;line-height:1.25;margin:0 0 .6rem}
+img{max-width:100%;display:block}
+a{color:#4a5fa8}
+:focus-visible{outline:3px solid var(--lila2);outline-offset:2px}
+section{padding:3.5rem 1.2rem}
+.wrap{max-width:1050px;margin:0 auto}
+.sec-titulo{font-size:clamp(1.7rem,4vw,2.4rem);margin-bottom:1.2rem}
+.card{background:#fff;border-radius:var(--r);box-shadow:var(--sombra);padding:1.4rem}
+
+/* ===== NAVEGACIÓN ===== */
+nav{position:sticky;top:0;z-index:50;background:rgba(255,253,249,.94);backdrop-filter:blur(8px);box-shadow:0 2px 12px rgba(80,90,140,.1)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:.6rem 1.2rem}
+.marca{font-family:'Fraunces',serif;font-weight:700;color:var(--tinta);text-decoration:none}
+#menu{display:flex;gap:.2rem;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+#menu a{display:block;padding:.35rem .65rem;border-radius:999px;text-decoration:none;color:var(--tinta);font-size:.88rem;font-weight:600}
+#menu a:hover,#menu a.activo{background:var(--lila)}
+#burger{display:none;background:var(--azul);border:0;border-radius:10px;font-size:1.3rem;padding:.3rem .7rem;cursor:pointer}
+@media(max-width:900px){#burger{display:block}#menu{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;padding:.6rem 1rem;box-shadow:var(--sombra)}#menu.abierto{display:flex}}
+
+/* ===== PORTADA ===== */
+#inicio{background:linear-gradient(135deg,var(--azul),var(--lila) 60%,var(--beige));padding:3rem 1.2rem}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:center}
+.hero h1{font-size:clamp(2.2rem,6vw,3.7rem)}
+.hero .sub{font-size:1.15rem;color:var(--suave)}
+.eslogan{display:inline-block;background:#fff;border-radius:999px;padding:.5rem 1.1rem;box-shadow:var(--sombra);font-weight:700;margin:.5rem 0}
+.portada{border-radius:28px;box-shadow:var(--sombra);aspect-ratio:4/3;object-fit:cover;width:100%;background:linear-gradient(135deg,var(--azul2),var(--lila2))}
+.autoria{font-size:.95rem;color:var(--suave)}
+@media(max-width:760px){.hero{grid-template-columns:1fr}}
+
+/* ===== AUTOR ===== */
+.autor{display:grid;grid-template-columns:220px 1fr;gap:1.5rem}
+.foto{aspect-ratio:1;border-radius:50%;background:var(--lila);border:3px dashed var(--lila2);display:flex;align-items:center;justify-content:center;text-align:center;font-size:.85rem;color:var(--suave);padding:1rem;overflow:hidden}
+.foto img{width:100%;height:100%;object-fit:cover}
+dl{display:grid;grid-template-columns:max-content 1fr;gap:.35rem 1rem;margin:0}
+dt{font-weight:700}dd{margin:0}
+[contenteditable]{background:var(--beige);border-radius:6px;padding:0 .4rem}
+@media(max-width:700px){.autor{grid-template-columns:1fr}.foto{max-width:200px;margin:auto}}
+
+/* ===== POSTS ===== */
+.bg-azul{background:var(--azul)}.bg-beige{background:var(--beige)}.bg-lila{background:var(--lila)}
+.post{display:grid;grid-template-columns:1fr;gap:1rem;margin-bottom:2rem}
+.post header{display:flex;align-items:center;gap:.9rem}
+.ico{font-size:2.2rem;background:var(--lila);border-radius:16px;width:62px;height:62px;display:flex;align-items:center;justify-content:center;flex:none}
+.meta{font-size:.85rem;color:var(--suave)}
+.post .foto-post{border-radius:var(--r);aspect-ratio:16/7;object-fit:cover;width:100%;background:linear-gradient(135deg,var(--azul2),var(--lila2));box-shadow:var(--sombra)}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}
+.cols h4{font-size:1.05rem}
+.cols ul{margin:.3rem 0;padding-left:1.2rem}
+.plat{display:flex;gap:.5rem;flex-wrap:wrap;margin:.4rem 0}
+.plat span{background:var(--azul);border-radius:999px;padding:.15rem .8rem;font-size:.9rem;font-weight:600}
+.pro{border-top:5px solid #9fd3b5}.con{border-top:5px solid #f0b8b8}
+.practico{background:var(--beige);border-left:5px solid var(--lila2)}
+
+/* ===== MAPAS COGNITIVOS ===== */
+.mapa{overflow-x:auto;padding-bottom:.5rem}
+.nodo{background:#fff;border:2px solid var(--azul2);border-radius:14px;padding:.6rem .9rem;text-align:center;font-weight:600;box-shadow:var(--sombra)}
+.n-centro{background:var(--lila);border-color:var(--lila2);font-family:'Fraunces',serif;font-size:1.1rem}
+.n-a{background:var(--azul)}.n-b{background:var(--beige);border-color:#d8c3a0}
+.flecha{color:var(--lila2);font-size:1.6rem;text-align:center;line-height:1}
+/* mapa conceptual */
+.mc{min-width:560px;display:flex;flex-direction:column;align-items:center;gap:.2rem}
+.mc-ramas{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;width:100%}
+.mc-rama{display:flex;flex-direction:column;align-items:center;gap:.2rem}
+.mc-hijos{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;width:100%}
+.mc small{display:block;color:var(--suave);font-weight:400;font-size:.78rem}
+.etiqueta{font-size:.8rem;color:var(--suave);font-style:italic}
+/* cuadro sinóptico */
+.sin{min-width:640px;display:grid;grid-template-columns:auto auto 1fr;align-items:center;gap:0}
+.llave{font-family:'Fraunces',serif;font-size:7rem;line-height:.9;color:var(--lila2);font-weight:300;padding:0 .4rem}
+.sin-grupo{display:flex;flex-direction:column;gap:1rem;grid-column:3}
+.sin-fila{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:.6rem}
+.sin-fila .llave{font-size:4.6rem}
+.sin-det{font-size:.88rem;text-align:left;font-weight:400}
+.sin-det b{font-weight:700}
+.sin-tit{grid-column:1/4;margin-bottom:.6rem}
+.sin-fam{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:.4rem;margin-bottom:1rem}
+.sin-fam>.nodo{min-width:150px}
+/* mapa mental */
+.mm{min-width:640px;display:grid;grid-template-columns:1fr auto 1fr;grid-template-rows:auto auto auto;gap:1rem 0;align-items:center}
+.rama{display:flex;align-items:center;gap:.5rem}
+.rama.der{flex-direction:row-reverse}
+.rama .hojas{font-size:.85rem;background:#fff;border-radius:12px;padding:.5rem .8rem;box-shadow:var(--sombra);max-width:230px}
+.rama .linea{height:3px;width:34px;background:var(--lila2);border-radius:3px;flex:none}
+.mm .centro{grid-row:1/4;grid-column:2;padding:1.4rem 1rem;max-width:200px;border-radius:50%;aspect-ratio:1;display:flex;align-items:center;justify-content:center}
+/* cuadro comparativo */
+.tabla{overflow-x:auto;border-radius:var(--r);box-shadow:var(--sombra)}
+table{border-collapse:collapse;width:100%;min-width:640px;background:#fff}
+th,td{padding:.8rem 1rem;text-align:left;vertical-align:top;border-bottom:1px solid var(--azul);font-size:.95rem}
+thead th{background:var(--lila);font-family:'Fraunces',serif}
+tbody th{background:var(--azul);width:150px}
+
+/* ===== IMPORTANCIA / CONCLUSIÓN / REFERENCIAS ===== */
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin:1.2rem 0}
+.refs li{padding-left:2rem;text-indent:-2rem;margin-bottom:.9rem;list-style:none;word-break:break-word}
+.refs{padding:0}
+footer{background:var(--tinta);color:#e9e9f5;text-align:center;padding:2rem 1rem}
+footer a{color:#cfc3f0}
+#arriba{position:fixed;right:1rem;bottom:1rem;z-index:60;border:0;border-radius:50%;width:48px;height:48px;font-size:1.3rem;background:var(--lila2);color:#fff;box-shadow:var(--sombra);cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s}
+#arriba.ver{opacity:1;pointer-events:auto}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- ===== BARRA DE NAVEGACIÓN ===== -->
+<nav aria-label="Navegación principal">
+  <div class="wrap">
+    <a class="marca" href="#inicio">💬</a>
+    <button id="burger" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <ul id="menu">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#autor">Presentación</a></li>
+      <li><a href="#introduccion">Introducción</a></li>
+      <li><a href="#comunicacion">Herramientas de comunicación</a></li>
+      <li><a href="#socializacion">Herramientas de socialización</a></li>
+      <li><a href="#mapas">Mapas cognitivos</a></li>
+      <li><a href="#importancia">Importancia</a></li>
+      <li><a href="#conclusion">Conclusión</a></li>
+      <li><a href="#referencias">Referencias</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ===== INICIO / PORTADA ===== -->
+<header id="inicio">
+  <div class="wrap hero">
+    <div>
+      <p class="meta">Blog académico</p>
+      <h1>Herramientas de comunicación y de socialización</h1>
+      <h2 style="font-size:1.3rem">Herramientas de comunicación y socialización en la era digital</h2>
+      <p class="eslogan">                                    </p>
+      <p class="sub">Un recorrido por las herramientas que nos permiten escribir, conversar, compartir y construir comunidad en entornos digitales.</p>
+      <p class="autoria">Autoría: <strong class="nombre-autor">Oscar Alejandro García García</strong></p>
+    </div>
+    <img class="portada" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=70" alt="Grupo de jóvenes colaborando con computadoras portátiles en una mesa de trabajo" onerror="this.removeAttribute('src')">
+  </div>
+</header>
+
+<main>
+
+<!-- ===== PRESENTACIÓN DEL AUTOR ===== -->
+<section id="autor">
+  <div class="wrap">
+    <h2 class="sec-titulo">Presentación</h2>
+    <div class="card autor">
+      <div class="foto" id="foto" title="" tabindex="0" role="button" aria-label="Agregar fotografía del estudiante"></div>
+      <input type="file" id="archivo" accept="image/*" hidden>
+      <div>
+        <dl>
+          <dt>Nombre completo:</dt><dd><span contenteditable="true" class="nombre-autor-edit">Oscar Alejandro García García</span></dd>
+          <dt>Institución educativa:</dt><dd><span contenteditable="true">Instituto Consorcio Clavijero</span></dd>
+          <dt>Carrera:</dt><dd><span contenteditable="true">Lic. en Derecho</span></dd>
+      
+          <dt>Asignatura:</dt><dd><span contenteditable="true">Computación Básica</span></dd>
+          <dt>Docente:</dt><dd><span contenteditable="true">Mtra. Silvia Esther Ortiz Velázquez</span></dd>
+          <dt>Fecha:</dt><dd><span contenteditable="true">15/11/2026</span></dd>
+        </dl>
+       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INTRODUCCIÓN ===== -->
+<section id="introduccion" class="bg-beige">
+  <div class="wrap">
+    <h2 class="sec-titulo">Introducción</h2>
+    <div class="card">
+      <p>Las <strong>herramientas digitales</strong> son programas, aplicaciones y plataformas que funcionan mediante dispositivos electrónicos e Internet y que facilitan tareas como escribir, almacenar información, estudiar, trabajar o comunicarse. Dentro de este grupo destacan dos categorías: las <strong>herramientas de comunicación</strong>, que permiten intercambiar mensajes y conversar con otras personas de forma directa, y las <strong>herramientas de socialización</strong>, que sirven para publicar contenido, formar comunidades y construir una identidad en línea.</p>
+      <p>Su importancia en la sociedad actual es evidente: hoy una persona puede entregar una tarea, asistir a una clase o participar en una reunión de trabajo sin estar en el mismo lugar que sus compañeros. Estas herramientas han transformado la manera de comunicarnos, porque la respuesta pasó de tardar días a tardar segundos; también han cambiado la forma de compartir información, ya que cualquier persona puede publicar un texto, una imagen o un video para un público amplio; y han modificado nuestras relaciones, pues hoy es posible mantener vínculos y conocer personas con intereses comunes sin importar la distancia.</p>
+      <p>En este blog se abordan seis herramientas. En comunicación: el correo electrónico, la mensajería instantánea y las videollamadas. En socialización: las redes sociales, los blogs y las páginas personales.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HERRAMIENTAS DE COMUNICACIÓN (posts generados por JS) ===== -->
+<section id="comunicacion" class="bg-azul">
+  <div class="wrap">
+    <h2 class="sec-titulo">Herramientas de comunicación</h2>
+    <p>Estas herramientas permiten transmitir mensajes entre personas de manera directa, ya sea por escrito o con voz e imagen.</p>
+    <div id="posts-com"></div>
+  </div>
+</section>
+
+<!-- ===== HERRAMIENTAS DE SOCIALIZACIÓN (posts generados por JS) ===== -->
+<section id="socializacion" class="bg-lila">
+  <div class="wrap">
+    <h2 class="sec-titulo">Herramientas de socialización</h2>
+    <p>Estas herramientas facilitan la publicación de contenido, la interacción con grupos amplios y la creación de comunidades e identidades digitales.</p>
+    <div id="posts-soc"></div>
+  </div>
+</section>
+
+<!-- ===== MAPAS COGNITIVOS ===== -->
+<section id="mapas">
+  <div class="wrap">
+    <h2 class="sec-titulo">Herramientas Digitales explicadas de manera sencilla</h2>
+    <p>Los siguientes organizadores ayudan a visualizar cómo se relacionan las herramientas.</p>
+
+    <!-- A. Mapa conceptual -->
+    <h3>A. Mapa conceptual</h3>
+    <div class="card mapa"><div class="mc">
+      <div class="nodo n-centro">Herramientas digitales</div>
+      <div class="flecha">↓</div><div class="etiqueta">se clasifican en</div>
+      <div class="mc-ramas">
+        <div class="mc-rama">
+          <div class="nodo n-a">Herramientas de comunicación<small>intercambian mensajes</small></div>
+          <div class="flecha">↓</div><div class="etiqueta">incluyen</div>
+          <div class="mc-hijos"><div class="nodo">📧 Correo electrónico</div><div class="nodo">💬 Mensajería instantánea</div><div class="nodo">🎥 Videollamadas</div></div>
+        </div>
+        <div class="mc-rama">
+          <div class="nodo n-b">Herramientas de socialización<small>crean comunidad</small></div>
+          <div class="flecha">↓</div><div class="etiqueta">incluyen</div>
+          <div class="mc-hijos"><div class="nodo">🌐 Redes sociales</div><div class="nodo">📝 Blogs</div><div class="nodo">🧑‍💻 Páginas personales</div></div>
+        </div>
+      </div>
+    </div></div>
+
+    <!-- B. Cuadro sinóptico -->
+    <h3 style="margin-top:2rem">B. Cuadro sinóptico</h3>
+    <div class="card mapa"><div class="sin" id="sinoptico"></div></div>
+
+    <!-- C. Mapa mental -->
+    <h3 style="margin-top:2rem">C. Mapa mental</h3>
+    <div class="card mapa"><div class="mm">
+      <div class="rama" style="grid-row:1;grid-column:1;justify-content:flex-end"><div class="hojas"><b>🎓 Educación:</b> clases virtuales, tareas en línea, tutorías y recursos abiertos.</div><span class="linea"></span></div>
+      <div class="rama" style="grid-row:2;grid-column:1;justify-content:flex-end"><div class="hojas"><b>💼 Trabajo:</b> reuniones remotas, equipos colaborativos y portafolios profesionales.</div><span class="linea"></span></div>
+      <div class="rama" style="grid-row:3;grid-column:1;justify-content:flex-end"><div class="hojas"><b>✉️ Comunicación:</b> mensajes inmediatos, contacto a distancia y trámites formales.</div><span class="linea"></span></div>
+      <div class="nodo n-centro centro">Importancia de las herramientas digitales</div>
+      <div class="rama der" style="grid-row:1;grid-column:3;justify-content:flex-end"><div class="hojas"><b>🤝 Socialización:</b> comunidades, grupos de interés y participación en línea.</div><span class="linea"></span></div>
+      <div class="rama der" style="grid-row:2;grid-column:3;justify-content:flex-end"><div class="hojas"><b>🏠 Vida cotidiana:</b> compras, trámites, entretenimiento y contacto con la familia.</div><span class="linea"></span></div>
+    </div></div>
+
+    <!-- D. Cuadro comparativo -->
+    <h3 style="margin-top:2rem">D. Cuadro comparativo</h3>
+    <div class="tabla"><table>
+      <thead><tr><th></th><th>Herramientas de comunicación</th><th>Herramientas de socialización</th></tr></thead>
+      <tbody>
+        <tr><th>Objetivo principal</th><td>Intercambiar mensajes entre personas o grupos concretos.</td><td>Compartir contenido y construir comunidades e identidad en línea.</td></tr>
+        <tr><th>Características</th><td>Interacción directa, privada o de grupo reducido; respuesta rápida; uso de texto, voz o video.</td><td>Alcance amplio, contenido público o semipúblico, perfiles, comentarios y reacciones.</td></tr>
+        <tr><th>Funciones</th><td>Enviar documentos, conversar en tiempo real, coordinar actividades y realizar reuniones.</td><td>Publicar, comentar, seguir a otros usuarios, difundir proyectos y mostrar un perfil.</td></tr>
+        <tr><th>Ejemplos</th><td>Gmail, WhatsApp, Telegram, Zoom, Google Meet, Microsoft Teams.</td><td>Facebook, Instagram, TikTok, X, WordPress, Blogger, Wix, Google Sites.</td></tr>
+        <tr><th>Beneficios</th><td>Rapidez, ahorro de tiempo y organización del trabajo en equipo.</td><td>Visibilidad, aprendizaje colectivo, networking y portafolio de evidencias.</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</section>
+
+<!-- ===== IMPORTANCIA DE LAS HERRAMIENTAS DIGITALES ===== -->
+<section id="importancia" class="bg-beige">
+  <div class="wrap">
+    <h2 class="sec-titulo">Importancia de las herramientas digitales</h2>
+    <p>Más allá de ser útiles, estas herramientas se han convertido en parte de la infraestructura de la vida moderna. Su valor se aprecia en cinco ámbitos.</p>
+    <div class="grid3">
+      <div class="card"><h4>🎓 Ámbito educativo</h4><p>Permiten asistir a clases a distancia, entregar tareas, consultar a los docentes y trabajar en equipo sin depender de un horario o un lugar fijo.</p></div>
+      <div class="card"><h4>💼 Ámbito laboral</h4><p>Facilitan el trabajo remoto, las reuniones virtuales y la coordinación de proyectos. Además, un perfil o portafolio en línea ayuda a mostrar habilidades ante posibles empleadores.</p></div>
+      <div class="card"><h4>🏠 Vida personal</h4><p>Ayudan a mantener el contacto con familiares y amistades, resolver trámites y acceder a información o entretenimiento desde casa.</p></div>
+      <div class="card"><h4>🗣️ Comunicación entre personas</h4><p>Reducen las distancias: un mensaje puede llegar al instante y una conversación puede hacerse cara a cara aunque haya miles de kilómetros de por medio.</p></div>
+      <div class="card"><h4>👥 Comunidades digitales</h4><p>Reúnen a personas con intereses semejantes, como grupos de estudio, foros o comunidades creativas, donde se comparte conocimiento y se ofrece apoyo mutuo.</p></div>
+    </div>
+    <div class="card practico">
+      <h3>Uso responsable, privacidad y convivencia</h3>
+      <p><strong>Uso responsable:</strong> conviene verificar la información antes de compartirla, citar las fuentes y dedicar un tiempo equilibrado a las pantallas.</p>
+      <p><strong>Protección de datos personales:</strong> es recomendable usar contraseñas seguras y distintas para cada cuenta, activar la verificación en dos pasos, revisar la configuración de privacidad y evitar publicar datos sensibles como domicilio, teléfono o información bancaria. Las plataformas ofrecen guías al respecto en sus centros de ayuda (Instagram, s. f.; WhatsApp LLC, s. f.).</p>
+      <p><strong>Convivencia respetuosa:</strong> en Internet también hay personas reales detrás de cada perfil. Por ello, se debe evitar el acoso, la burla y la difusión de rumores; respetar las opiniones distintas y pedir permiso antes de publicar imágenes de otras personas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONCLUSIÓN ===== -->
+<section id="conclusion">
+  <div class="wrap">
+    <h2 class="sec-titulo">Conclusión</h2>
+    <div class="card">
+      <p>A lo largo de este blog se mostró que las herramientas de comunicación (correo electrónico, mensajería instantánea y videollamadas) permiten intercambiar mensajes de forma rápida y organizada, mientras que las de socialización (redes sociales, blogs y páginas personales) facilitan compartir contenido, crear comunidades y construir una identidad digital. Aunque cumplen objetivos distintos, se complementan: un estudiante puede coordinar un proyecto por mensajería, presentarlo por videollamada y difundirlo después en un blog.</p>
+      <p>Conocerlas es importante porque contribuyen directamente al <strong>aprendizaje</strong>, al permitir acceder a recursos y resolver dudas con rapidez; a la <strong>colaboración</strong>, al facilitar el trabajo conjunto a distancia; al <strong>intercambio de información</strong>, al hacer posible que el conocimiento circule; y a las <strong>relaciones sociales</strong>, al mantener y ampliar nuestros vínculos.</p>
+      <p>Sin embargo, la tecnología por sí sola no garantiza una buena comunicación. Su valor depende del uso que hagamos de ella: con criterio, cuidando nuestra privacidad y respetando a los demás. Aprender a elegir la herramienta adecuada para cada situación es una competencia clave para estudiar, trabajar y convivir en la era digital.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REFERENCIAS (APA 7, orden alfabético) ===== -->
+<section id="referencias" class="bg-azul">
+  <div class="wrap">
+    <h2 class="sec-titulo">Referencias</h2>
+    <ul class="refs card">
+      <li>Blogger. (s. f.). <em>Ayuda de Blogger</em>. Google. <a href="https://support.google.com/blogger" target="_blank" rel="noopener">https://support.google.com/blogger</a></li>
+      <li>Google. (s. f.-a). <em>Ayuda de Gmail</em>. <a href="https://support.google.com/mail/?hl=es" target="_blank" rel="noopener">https://support.google.com/mail/?hl=es</a></li>
+      <li>Google. (s. f.-b). <em>Ayuda de Google Meet</em>. <a href="https://support.google.com/meet" target="_blank" rel="noopener">https://support.google.com/meet</a></li>
+      <li>Google. (s. f.-c). <em>Google Sites</em>. <a href="https://sites.google.com/" target="_blank" rel="noopener">https://sites.google.com/</a></li>
+      <li>Instagram. (s. f.). <em>Centro de ayuda de Instagram</em>. <a href="https://help.instagram.com/" target="_blank" rel="noopener">https://help.instagram.com/</a></li>
+      <li>Microsoft. (s. f.). <em>Soporte de Microsoft Teams</em>. <a href="https://support.microsoft.com/es-es/teams" target="_blank" rel="noopener">https://support.microsoft.com/es-es/teams</a></li>
+      <li>Telegram. (s. f.). <em>Preguntas frecuentes sobre Telegram</em>. <a href="https://telegram.org/faq" target="_blank" rel="noopener">https://telegram.org/faq</a></li>
+      <li>WhatsApp LLC. (s. f.). <em>Centro de ayuda de WhatsApp</em>. <a href="https://faq.whatsapp.com/?locale=es_LA" target="_blank" rel="noopener">https://faq.whatsapp.com/?locale=es_LA</a></li>
+      <li>Wix.com. (s. f.). <em>Centro de ayuda de Wix</em>. <a href="https://support.wix.com/es" target="_blank" rel="noopener">https://support.wix.com/es</a></li>
+      <li>WordPress. (s. f.). <em>WordPress en español</em>. <a href="https://es.wordpress.org/" target="_blank" rel="noopener">https://es.wordpress.org/</a></li>
+      <li>Zoom Video Communications. (s. f.). <em>Centro de ayuda de Zoom</em>. <a href="https://support.zoom.com/hc/es" target="_blank" rel="noopener">https://support.zoom.com/hc/es</a></li>
+    </ul>
+    <p class="meta">Imágenes: Unsplash (licencia libre). Las definiciones se redactaron con palabras propias a partir de la información de los centros de ayuda oficiales.</p>
+  </div>
+</section>
+</main>
+
+<!-- ===== PIE DE PÁGINA ===== -->
+<footer>
+  <p><strong>Blog-Instituto consorcio Clavijero</strong></p>
+  <p>Autor: <span class="nombre-autor">[Oscar]</span> · Blog académico</p>
+  <p><a href="#inicio">↑ Volver al inicio</a></p>
+</footer>
+
+<button id="arriba" aria-label="Volver al inicio">↑</button>
+
+<script>
+/* ===== DATOS DE LAS PUBLICACIONES ===== */
+const posts = [
+ {g:'com',id:'correo',ico:'📧',t:'Correo electrónico',
+  img:'https://images.unsplash.com/photo-1596526131083-e8c633c948d2?auto=format&fit=crop&w=1000&q=70',alt:'Bandeja de entrada de correo electrónico en una computadora portátil',
+  def:'El correo electrónico es un servicio que permite enviar y recibir mensajes escritos, con archivos adjuntos, mediante una dirección personal asociada a un proveedor. Es una de las formas de comunicación más antiguas de Internet y sigue siendo el medio formal por excelencia (Google, s. f.-a).',
+  car:['Comunicación asíncrona: el destinatario responde cuando puede.','Uso de una dirección única (usuario@dominio).','Envío de archivos adjuntos, copias y copias ocultas.','Organización mediante carpetas, etiquetas y filtros.'],
+  fun:['Mantener comunicación formal y verificable.','Enviar tareas, informes y documentos.','Recibir avisos institucionales y registrar cuentas en otras plataformas.'],
+  pl:['Gmail','Outlook','Yahoo Mail'],
+  pra:'Un estudiante escribe a su docente con el asunto «Tarea 2 – Nombre y grupo», saluda con respeto, adjunta el archivo en PDF y se despide con su nombre completo. Después guarda la respuesta en una carpeta llamada «Materia» para consultarla más tarde.',
+  pro:['Es formal y deja constancia escrita.','Permite adjuntar documentos de gran tamaño.','Es gratuito en la mayoría de los proveedores.'],
+  con:['La respuesta puede tardar.','Se recibe correo no deseado (spam) y hay riesgo de phishing.','Una bandeja saturada dificulta encontrar mensajes importantes.']},
+ {g:'com',id:'mensajeria',ico:'💬',t:'Mensajería instantánea',
+  img:'https://images.unsplash.com/photo-1611606063065-ee7946f0787a?auto=format&fit=crop&w=1000&q=70',alt:'Persona usando aplicaciones de mensajería en un teléfono celular',
+  def:'La mensajería instantánea es un sistema que permite intercambiar mensajes de texto, imágenes, audios y documentos casi en tiempo real, tanto en conversaciones individuales como en grupos, generalmente desde el teléfono celular (WhatsApp LLC, s. f.).',
+  car:['Comunicación inmediata y conversacional.','Creación de grupos y listas de difusión.','Envío de notas de voz, fotos, archivos y ubicación.','Indicadores de entrega y lectura, y opciones de privacidad.'],
+  fun:['Coordinar actividades de forma ágil.','Compartir información breve y recursos.','Resolver dudas rápidas entre compañeros.'],
+  pl:['WhatsApp','Telegram','Messenger'],
+  pra:'Un equipo de cuatro estudiantes crea un grupo para un proyecto. Allí acuerdan la fecha de reunión, reparten las secciones, comparten el enlace del documento en común y preguntan dudas sobre la rúbrica. Fijan en el grupo el mensaje con la fecha de entrega para no olvidarla.',
+  pro:['Es rápida y fácil de usar.','Permite coordinar equipos con facilidad.','Admite distintos formatos de contenido.'],
+  con:['Puede distraer con notificaciones constantes.','Los mensajes importantes se pierden entre muchos otros.','Existe el riesgo de difundir rumores o información falsa.']},
+ {g:'com',id:'videollamadas',ico:'🎥',t:'Videollamadas',
+  img:'https://images.unsplash.com/photo-1587614382346-4ec70e388b28?auto=format&fit=crop&w=1000&q=70',alt:'Persona participando en una videollamada desde una computadora',
+  def:'Las videollamadas son comunicaciones en tiempo real que transmiten audio y video a través de Internet, de modo que varias personas pueden verse y hablar aunque se encuentren en lugares distintos. Para ello se crea una reunión a la que los participantes entran mediante un enlace o un código (Zoom Video Communications, s. f.).',
+  car:['Comunicación sincrónica con voz e imagen.','Función de compartir pantalla y presentaciones.','Chat integrado, salas de grupos y posibilidad de grabar la sesión.','Programación de reuniones con enlaces de acceso.'],
+  fun:['Impartir y recibir clases a distancia.','Realizar tutorías y asesorías personalizadas.','Celebrar reuniones de trabajo sin viajar.'],
+  pl:['Zoom','Google Meet','Microsoft Teams'],
+  pra:'Una docente programa en Google Meet una tutoría grupal. Los estudiantes entran con el enlace, activan la cámara, apagan el micrófono mientras escuchan y levantan la mano virtual para preguntar. Al final, un alumno comparte su pantalla para mostrar su avance (Google, s. f.-b).',
+  pro:['Ofrece comunicación cercana, casi como en persona.','Ahorra tiempo y costos de traslado.','Permite grabar la sesión para repasarla después.'],
+  con:['Depende de una buena conexión a Internet.','Puede generar cansancio por exceso de reuniones.','Los problemas técnicos interrumpen la sesión.']},
+ {g:'soc',id:'redes',ico:'🌐',t:'Redes sociales',
+  img:'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=1000&q=70',alt:'Teléfono móvil mostrando iconos de redes sociales',
+  def:'Las redes sociales son plataformas en línea donde las personas crean un perfil, publican contenido y se relacionan con otros usuarios mediante seguidores, amistades, comentarios y reacciones (Instagram, s. f.).',
+  car:['Perfiles personales o institucionales.','Contenido en distintos formatos: texto, imagen y video.','Interacción pública mediante «me gusta», comentarios y mensajes.','Algoritmos que recomiendan contenido según los intereses.'],
+  fun:['Compartir ideas, logros y noticias.','Interactuar con personas de todo el mundo.','Crear y participar en comunidades digitales de interés común.'],
+  pl:['Facebook','Instagram','TikTok','X'],
+  pra:'Un grupo universitario abre una cuenta de Instagram para divulgar sus proyectos de investigación en publicaciones breves con imágenes. Los seguidores comentan, hacen preguntas y proponen temas, con lo que se forma una pequeña comunidad de aprendizaje.',
+  pro:['Gran alcance y difusión rápida.','Favorecen la participación y la creatividad.','Permiten crear comunidades y redes de apoyo.'],
+  con:['Pueden generar adicción y distracción.','Exponen la privacidad si no se configuran bien.','Facilitan la desinformación y el ciberacoso.']},
+ {g:'soc',id:'blogs',ico:'📝',t:'Blogs',
+  img:'https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1000&q=70',alt:'Escritorio con computadora portátil y cuaderno para escribir un blog',
+  def:'Un blog es un sitio web organizado en entradas o publicaciones, normalmente ordenadas de la más reciente a la más antigua, donde una persona o un grupo comparte textos, imágenes y recursos sobre un tema. Su finalidad es informar, opinar o documentar conocimientos de forma permanente.',
+  car:['Entradas con fecha y autor.','Categorías, etiquetas y comentarios de los lectores.','Diseño personalizable mediante plantillas.','Publicación sencilla, sin necesidad de programar.'],
+  fun:['Difundir investigaciones y reflexiones.','Registrar experiencias académicas.','Construir una voz propia y una reputación como autor.'],
+  pl:['WordPress','Blogger'],
+  pra:'Una estudiante de Pedagogía crea un blog en Blogger para publicar reseñas de los textos que lee en clase. Cada entrada incluye un resumen con sus propias palabras, una imagen y las referencias en formato APA. Al final del semestre, el blog funciona como evidencia de su aprendizaje (Blogger, s. f.; WordPress, s. f.).',
+  pro:['Es fácil de crear y mantener.','El contenido permanece accesible y organizado.','Fortalece la escritura y la investigación.'],
+  con:['Requiere constancia para actualizarse.','Hay que cuidar la redacción y citar las fuentes.','Tiene menor difusión que las redes si no se promociona.']},
+ {g:'soc',id:'paginas',ico:'🧑‍💻',t:'Páginas personales',
+  img:'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=1000&q=70',alt:'Diseñador trabajando en el diseño de un sitio web personal',
+  def:'Una página personal es un sitio web en el que una persona presenta su perfil, sus habilidades y sus proyectos, y que funciona como una carta de presentación digital. A diferencia de un blog, su contenido suele ser más estable y no se organiza por fechas.',
+  car:['Estructura sencilla: inicio, acerca de mí, proyectos y contacto.','Control total del contenido y del diseño.','Dirección web propia o proporcionada por la plataforma.','Constructores visuales de arrastrar y soltar.'],
+  fun:['Mostrar un portafolio académico o profesional.','Dar visibilidad a trabajos y logros.','Facilitar el contacto con posibles colaboradores o empleadores.'],
+  pl:['Wix','Google Sites','WordPress'],
+  pra:'Un estudiante de Diseño usa Google Sites para armar su portafolio: escribe una breve presentación, incorpora imágenes de sus trabajos, lista sus habilidades, añade su currículum y un correo de contacto, y finalmente publica el sitio para compartir el enlace (Google, s. f.-c; Wix.com, s. f.).',
+  pro:['Proyecta una imagen profesional.','Permite presentar el trabajo con orden.','Muchos constructores son gratuitos o de bajo costo.'],
+  con:['Hay que actualizarla periódicamente.','Algunas funciones avanzadas son de pago.','Exige cuidar qué datos personales se publican.']}
+];
+const li = a => a.map(x=>'<li>'+x+'</li>').join('');
+function render(p){
+ return `<article class="card post" id="${p.id}">
+  <header><span class="ico" aria-hidden="true">${p.ico}</span><div><h3>${p.t}</h3><span class="meta">Por <span class="nombre-autor">[Oscar Alejandro García García]</span></span></div></header>
+  <img class="foto-post" src="${p.img}" alt="${p.alt}" loading="lazy" onerror="this.removeAttribute('src')">
+  <div><h4>Definición</h4><p>${p.def}</p></div>
+  <div class="cols">
+    <div><h4>Características principales</h4><ul>${li(p.car)}</ul></div>
+    <div><h4>Funciones y utilidad</h4><ul>${li(p.fun)}</ul></div>
+    <div><h4>Ejemplos de plataformas</h4><div class="plat">${p.pl.map(x=>'<span>'+x+'</span>').join('')}</div></div>
+  </div>
+  <div class="card practico"><h4>Ejemplo práctico</h4><p>${p.pra}</p></div>
+  <div class="cols">
+    <div class="card pro"><h4>✅ Ventajas</h4><ul>${li(p.pro)}</ul></div>
+    <div class="card con"><h4>⚠️ Desventajas</h4><ul>${li(p.con)}</ul></div>
+  </div></article>`;
+}
+document.getElementById('posts-com').innerHTML = posts.filter(p=>p.g==='com').map(render).join('');
+document.getElementById('posts-soc').innerHTML = posts.filter(p=>p.g==='soc').map(render).join('');
+
+/* ===== CUADRO SINÓPTICO (generado con los mismos datos) ===== */
+const resumen = {
+ correo:'Mensajes escritos con adjuntos · formal y asíncrono',
+ mensajeria:'Chat inmediato en grupos o individual · rápido',
+ videollamadas:'Audio y video en tiempo real · sincrónica',
+ redes:'Perfiles, contenido e interacción · gran alcance',
+ blogs:'Entradas ordenadas por fecha · informar y opinar',
+ paginas:'Sitio de presentación y portafolio · contenido estable'};
+const fam = (titulo,cls,ids)=>`<div class="sin-fam"><div class="nodo ${cls}">${titulo}</div><div style="display:grid;grid-template-columns:auto 1fr;align-items:center"><span class="llave" style="font-size:6rem">{</span><div style="display:flex;flex-direction:column;gap:.5rem">${ids.map(i=>{const p=posts.find(x=>x.id===i);return `<div class="sin-fila"><div class="nodo">${p.ico} ${p.t}</div><div class="sin-det"><b>Def.:</b> ${resumen[i]}.<br><b>Ejemplos:</b> ${p.pl.join(', ')}</div></div>`}).join('')}</div></div></div>`;
+document.getElementById('sinoptico').innerHTML = `<div class="sin-tit" style="grid-column:1/4"><div class="nodo n-centro" style="display:inline-block">Herramientas digitales</div></div><div style="grid-column:1/4">${fam('Herramientas de comunicación','n-a',['correo','mensajeria','videollamadas'])}${fam('Herramientas de socialización','n-b',['redes','blogs','paginas'])}</div>`;
+
+/* ===== NOMBRE DEL AUTOR: sincroniza portada, posts y pie de página ===== */
+const campo = document.querySelector('.nombre-autor-edit');
+campo.addEventListener('input',()=>{const v=campo.textContent.trim()||'[Nombre del estudiante]';document.querySelectorAll('.nombre-autor').forEach(e=>e.textContent=v)});
+
+/* ===== FOTOGRAFÍA DEL ESTUDIANTE ===== */
+const foto=document.getElementById('foto'),arch=document.getElementById('archivo');
+foto.addEventListener('click',()=>arch.click());
+foto.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();arch.click()}});
+arch.addEventListener('change',()=>{const f=arch.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{foto.innerHTML='<img alt="Fotografía del estudiante" src="'+r.result+'">'};r.readAsDataURL(f)});
+
+/* ===== MENÚ MÓVIL, ENLACE ACTIVO Y BOTÓN DE REGRESO ===== */
+const menu=document.getElementById('menu'),burger=document.getElementById('burger');
+burger.addEventListener('click',()=>{const a=menu.classList.toggle('abierto');burger.setAttribute('aria-expanded',a)});
+menu.addEventListener('click',e=>{if(e.target.tagName==='A'){menu.classList.remove('abierto');burger.setAttribute('aria-expanded',false)}});
+const enlaces=[...menu.querySelectorAll('a')];
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){enlaces.forEach(a=>a.classList.toggle('activo',a.getAttribute('href')==='#'+e.target.id))}}),{rootMargin:'-40% 0px -55% 0px'});
+document.querySelectorAll('header#inicio, main > section').forEach(s=>obs.observe(s));
+const arriba=document.getElementById('arriba');
+window.addEventListener('scroll',()=>arriba.classList.toggle('ver',scrollY>500));
+arriba.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+</script>
+</body>
+</html>
